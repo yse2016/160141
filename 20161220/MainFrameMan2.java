@@ -2,7 +2,7 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
-public class MainFrameMan{
+public class MainFrameMan2{
    public static void main(String[] args) {
    	FrameMan fm = new FrameMan();
    }
@@ -10,9 +10,11 @@ public class MainFrameMan{
      //"ActionListener" を実装(imp)する
     class FrameMan implements ActionListener{
     	JFrame frame;
-    	JPanel panel;
+    	JPanel panel1;
+        JPanel panel2;
     	JLabel label;
     	JButton button;
+        JTextField textfield;
 
 
     	public FrameMan(){
@@ -20,20 +22,22 @@ public class MainFrameMan{
     		    frame = new JFrame("FrameMan!");
     			frame.setBounds(100, 100, 300, 300);
     			frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    			frame.setLayout(new FlowLayout() );
+    			frame.setLayout(new BorderLayout() );
     			
 
-                panel = new JPanel();
+                panel1 = new JPanel();
+                panel2 = new JPanel();
     			label = new JLabel("HELLO");
     			button = new JButton("ClickMe!");
-    			textfield = new JTextfield(10);
+    			textfield = new JTextField(10);
 
     			button.addActionListener(this);
 
-                panel.add(textfield);
-    			panel.add(label);
-    			panel.add(button);
-    			frame.add(panel);
+                panel1.add(textfield);
+    			panel1.add(label);
+    			panel2.add(button);
+                frame.add(panel1, BorderLayout.NORTH);
+    			frame.add(panel2, BorderLayout.CENTER);
 
     			frame.setVisible(true);
     	}
