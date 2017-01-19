@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+     <meta charset="utf-8">
+	<title>canvas</title>
+</head>
+<body>
+<canvas  id = "canvas" widih="500" height="500"></canvas>
+     <script>
+     	var canvas = document.getElementById('canvas');
+     	var ctx = canvas.getContext('2d');
+     	var x = 100;
+     	var y = 100;
+
+     	ctx.fillStyle = "rgb(170, 120, 0)";
+     	ctx.strokeRect(x, y, 200, 120);
+
+     	ctx.fillStyle = "rgb(110, 30, 200)";
+     	ctx.clearRect(x, y, 150, 190);
+
+        ctx.fillStyle = "rgb(200, 0, 0)";
+        ctx.fillRect(180, 160, 190, 120);
+
+        ctx.fillStyle = "rgb(30, 205, 50)";
+        ctx.fillRect(120, 340, 170, 250);
+
+        ctx.beginPath();
+        ctx.moveTo(75,50);
+        ctx.lineTo(100,75);
+        ctx.lineTo(100,25);
+        ctx.fill();
+
+        ctx.moveTo(150,50);
+        ctx.lineTo(125,75);
+        ctx.lineTo(125,25);
+        ctx.closePath();
+
+        ctx.stroke();
+
+        ctx.moveTo(30,70);
+        ctx.lineTo(150,100);
+        ctx.lineTo(150,50);
+        ctx.closePath();
+
+        ctx.stroke();
+
+        ctx.beginPath();
+        moveTo(200, 200);
+        ctx.arc(200, 200, 40, 0, Math.PI*0.5, false);
+        ctx.fill();
+
+         ctx.beginPath();
+        ctx.arc(205, 205, 40, 0, Math.PI*0.5, true);
+        ctx.fill();
+
+        ctx.moveTo(200, 200);
+        ctx.bezierCurveTo(180, 180, )
+
+
+     </script>
+
+</body>
+</html>
