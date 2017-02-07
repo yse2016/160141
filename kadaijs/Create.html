@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="css/base.css">
+    <script src="https://code.createjs.com/createjs-2015.11.26.min.js"></script>
+    <script>
+	window.addEventListener("load", init);
+
+	function init() {
+	var stage = new createjs.Stage("myCanvas");
+
+
+    var maru = new createjs.Shape();
+	maru.graphics.beginFill("#00ff00")
+	maru.graphics.drawCircle(0, 0, 15);
+	stage.addChild(maru);
+	maru.x = 300;
+	maru.y = 160;
+
+	var maru2 = new createjs.Shape();
+	maru2.graphics.beginFill("#00ff00")
+	maru2.graphics.drawCircle(0, 0, 15);
+	stage.addChild(maru2);
+	maru2.x = 300;
+	maru2.y = 60;
+
+	var maru3 = new createjs.Shape();
+	maru3.graphics.beginFill("#0000ff")
+	maru3.graphics.drawCircle(0, 0, 10);
+	stage.addChild(maru3);
+	maru3.x = 250;
+	maru3.y = 10;
+
+	var maru4 = new createjs.Shape();
+	maru4.graphics.beginFill("#0000ff")
+	maru4.graphics.drawCircle(0, 0, 10);
+	stage.addChild(maru4);
+	maru4.x = 300;
+	maru4.y = 10;
+
+
+	var make = new createjs.Shape();
+	make.graphics.beginFill("#ff0000")
+	make.graphics.drawCircle(0, 0, 10);
+	make.x =  stage.canvas.width / 2;
+	make.y =  stage.canvas.height / 2;
+	stage.addChild(make);
+
+	var shape = new createjs.Shape();
+	shape.graphics.beginFill("DarkRed")
+	shape.graphics.drawCircle(0, 0, 15);
+	stage.addChild(shape);
+
+	shape.x = 200;
+	shape.y = 200;
+
+	var vx = +4;
+	var vy = +4;
+
+	
+	
+	window.addEventListener("keydown", handleKeyDown);
+	function handleKeyDown(event) {
+		var keyCode = event.keyCode;
+
+		if (keyCode == 39){
+			shape.x += 2;
+			shape.rotation = 0;
+		} else if (keyCode == 37) {
+			shape.x -= 2;
+			shape.rotation = 180;
+		} else if (keyCode == 40) {
+			shape.y += 2;
+			shape.rotation = 90;
+		} else if (keyCode == 38) {
+			shape.y -= 2;
+			shape.rotation = -90;
+		}
+	}
+
+	createjs.Ticker.addEventListener("tick", handleTick);
+	function handleTick() {
+		maru.x += vx;
+		if (maru2.x > 540){
+			vx -=8;
+			maru2.x = 540;
+		}else if(maru.x < 0) {
+			vx +=8;
+			maru2.x = 0;
+		}
+
+		var point = shape.localToLocal(0, 0, maru);
+		var isHit = maru.hitTest(point.x, point.y);
+
+		if (isHit == true) {
+			shape.x = 200;
+			shape.y = 200;
+		}
+
+		maru2.x += vx;
+		if (maru2.x > 540){
+			vx -=8;
+			maru2.x = 540;
+		}else if(maru2.x < 0) {
+			vx +=8;
+			maru2.x = 0;
+		}
+
+		var point = shape.localToLocal(0, 0, maru2);
+		var isHit = maru2.hitTest(point.x, point.y);
+
+		if (isHit == true) {
+			shape.x = 200;
+			shape.y = 200;
+		}
+
+		maru3.y += vy;
+		if (maru3.y > 220){
+			vy -=8;
+			maru3.y = 220;
+		}else if(maru3.y < 0) {
+			vy +=8;
+			maru3.y = 0;
+		}
+
+		var point = shape.localToLocal(0, 0, maru3);
+		var isHit = maru3.hitTest(point.x, point.y);
+		
+		if (isHit == true) {
+			shape.x = 200;
+			shape.y = 200;
+		}
+
+		maru4.y += vy;
+		if (maru4.y > 220){
+			vy -=8;
+			maru4.y = 220;
+		}else if(maru3.y < 0) {
+			vy +=8;
+			maru4.y = 0;
+		}
+
+		var point = shape.localToLocal(0, 0, maru4);
+		var isHit = maru4.hitTest(point.x, point.y);
+		
+		if (isHit == true) {
+			shape.x = 200;
+			shape.y = 200;
+		}
+
+		var point = shape.localToLocal(0, 0, make);
+		var isHit = make.hitTest(point.x, point.y);
+		if (isHit == true) {
+			alert("着きました");
+			showGameOver();
+	    }
+		stage.update();
+	}
+	function showGameOver(){
+			createjs.Ticker.removeAllEventListeners();
+			stage.removeAllEventListeners();
+   }
+}
+ </script>
+</head>
+<body>
+      <canvas id="myCanvas" width="540" height="220"></canvas>
+</body>
+</html>
